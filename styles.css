@@ -1,5 +1,6 @@
 body{
     background-image: url(img/nighitsky.webp);
+    margin: 0;
 }
 
 .main-content{
@@ -22,7 +23,7 @@ p{
     margin-top: -20px;
 }
 .main-content img{
-    width: 10%;
+    width: 100px;
 }
 
 .button{
@@ -57,4 +58,28 @@ a.button-custom {
 a.button-custom:hover {
     background-color: #3498db;
     color: #fff;
+}
+
+footer{
+    display: flex;
+    background-color: black;
+    margin-top: 50vh;
+    color: white;
+    display: flex;
+    gap: 50px;
+    font-family: Montserrat, sans-serif;
+}
+
+footer .box{
+    padding: 20px;
+    margin: auto;
+}
+
+footer .box p{
+    font-size: 7px;
+}
+
+footer .box img{
+    width: 20%;
+    margin: auto;
 }
