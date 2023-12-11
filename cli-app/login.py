@@ -1,19 +1,45 @@
+from datetime import date
+import os
+import json
 
-def register(): # Register user
+# Function to register a new user
+def register():
     email = input("Masukkan email: ")
-
+    day = date.today()
+    usernames = [user.rstrip('.json') for user in os.listdir("userinfo")]
     while True:
-        password = input("Masukkan password")
-        if password >= 8:
+        while True:
+            username = input("Masukkan username: ")
+            if username in usernames and not username.isalnum():
+                print(f"Username dengan nama {username} sudah ada atau tidak alfanumerik.")
+            else:
+                break
+        password = input("Masukkan password: ")
+        if len(password) >= 8:   
+            with open(f'userinfo/{username}.json', 'w') as file:
+                file.write("{\n")
+                file.write(f'"username": "{username}",\n')
+                file.write(f'"password": "{password}",\n')
+                file.write(f'"email": "{email}",\n')
+                file.write(f'"registration_date": "{day}",\n')
+                file.write('"weight_history": ' + '{'+f'"{day}":' +  '0' + '}\n')
+                file.write("}\n")
+            print("Registrasi sukses!")
             break
         else:
             print("Password harus lebih dari 8 karakter.")
 
-    user_info[email] = password
-
-def login(): # login user
-    email = input("Masukkan email: ")
+def login():
+    usernames = [user.rstrip('.json') for user in os.listdir("userinfo")]
     while True:
-        if email not in user_info:
-            selection = (input("Email tidak ada dalam database. apakah anda ingin registrasi? (1 coba ulang, 2 lupa password, 3 registrasi)"))
-            if selection
+        username = input("Username: ")
+        if username in usernames:
+            with open(f'{username}.json', 'r'):
+                pass
+
+usernam2es = [user.rstrip('.json') for user in os.listdir("userinfo")]
+print(usernam2es)
+
+
+def lupa_password():
+    pass
