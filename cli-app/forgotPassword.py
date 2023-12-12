@@ -1,7 +1,11 @@
-from user_info import user_info
+# get username
 
-email = input("Masukkan Email: ")
+def main():
+  email = input("Masukkan Email: ")
 
-for i,y in user_info.items():
-  if email == i:
-    print(f"Password anda adalah: {y}")
+  for i,y in ():
+    if email == i:
+      print(f"Password anda adalah: {y}")
+
+if __name__ == '__main__':
+  main()

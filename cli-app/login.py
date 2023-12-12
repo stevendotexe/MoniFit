@@ -2,6 +2,9 @@ from datetime import date
 import os
 import json
 
+def main():
+    pass
+
 # Function to register a new user
 def register():
     email = input("Masukkan email: ")
@@ -37,9 +40,5 @@ def login():
             with open(f'{username}.json', 'r'):
                 pass
 
-usernam2es = [user.rstrip('.json') for user in os.listdir("userinfo")]
-print(usernam2es)
-
-
-def lupa_password():
-    pass
+if __name__ == '__main__':
+    register()
