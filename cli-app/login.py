@@ -1,46 +1,46 @@
 from datetime import date
 from time import sleep
 import os
-import json
+import csv
+import hashlib
 
 
 def main():
     while True:
         try:
-            try:
-                selection = int(input("Pilih mode: \n1. Registrasi\n2. Login\nPilihan (Ctrl+C untuk keluar): "))
-            except ValueError:
-                print("Mohon pilih nomor antara 1 atau 2.")
-            if selection == 1:
-                register()
-                break
-            elif selection == 2:
-                login()
-                break
-            else: pass
-        except KeyboardInterrupt:
-            print("\nExiting application..."); sleep(2); exit()
+            selection = int(input("Pilih mode: \n1. Registrasi\n2. Login\nPilihan (Ctrl+C untuk keluar): "))
+        except ValueError:
+            print("Mohon pilih nomor antara 1 atau 2.")
+        if selection == 1:
+            register()
+            break
+        elif selection == 2:
+            login()
+            break
+        else:
+            pass
+
 
 def login():
-    usernames = [user.rstrip('.json') for user in os.listdir("userinfo")] # list semua username di folder userinfo
-    while True: # loop untuk input username & passowrd
+    usernames = [user.rstrip('.csv') for user in os.listdir("userinfo")]
+    while True:
         username = input("Username: ")
         if username in usernames:
-            with open(f'userinfo/{username}.json', 'r') as file:
-                data = json.load(file)
-            # cek validitas password
+            with open(f'userinfo/{username}.csv', 'r') as file:
+                data = csv.reader(file)
+                data = list(data)[1]  # ubah csv jadi list
             while True:
                 pwinput = input("Password: ")
-                if pwinput == data["password"]:
+                if pwinput == data[1]:  # validasi password
                     print("Logging in...")
                     sleep(1)
                     return username
                 else:
                     while True:
                         try:
-                            selection = int(input("1. Coba lagi\n2. Keluar dan registrasi\n\n Pilihan: "))
+                            selection = int(input("Password salah.\n1. Coba lagi\n2. Keluar dan registrasi\n\n Pilihan: "))
                             if selection == 1:
-                                break # break jika user mau mencoba memasukkan password lagi
+                                break
                             elif selection == 2:
                                 exit()
                             else:
@@ -49,12 +49,12 @@ def login():
                             print("Mohon pilih antara 1 dan 2.")
 
         else:
-            print(f"Username dengan nama {username} tidak ditemkuan. Apakah anda ingin keluar dan registrasi?")
+            print(f"Username dengan nama {username} tidak ditemukan. Apakah anda ingin keluar dan registrasi?")
             while True:
                 try:
                     selection = int(input("1. Coba lagi\n2. Keluar dan registrasi\nPilihan: "))
                     if selection == 1:
-                        break # break jika user mau mencoba memasukkan password lagi
+                        break
                     elif selection == 2:
                         exit()
                     else:
@@ -62,10 +62,10 @@ def login():
                 except ValueError:
                     print("Mohon pilih antara 1 dan 2.")
 
-# registrasi user baru
+
 def register():
     email = input("Masukkan email: ")
-    usernames = [user.rstrip('.json') for user in os.listdir("userinfo")]
+    usernames = [user.rstrip('.csv') for user in os.listdir("userinfo")]
     print(usernames)
 
     while True:
@@ -75,21 +75,23 @@ def register():
         else:
             while True:
                 password = input("Masukkan password: ")
-                if len(password) >= 8:   
-                    print("Sedang me-register akun...."); sleep(1)
+                if len(password) >= 8:
+                    print("Sedang me-register akun....")
+                    sleep(1)
                     print("Registrasi sukses!")
-                    new_user(username, email, password)   
+                    new_user(username, email, password)
                     return username
                 else:
                     print("Password harus lebih dari 8 karakter.")
-            
-def new_user(username, email, password): # untuk memasukkan data user baru
+
+
+def new_user(username, email, password):
     day = date.today()
 
     print("Selamat datang di MoniFit! Agar data kami sesuai dengan perhitungan, mohon masukkan data-data.")
     while True:
         try:
-            weight = int(input("Masukkan berat badan anda (dalam kg): ")) 
+            weight = int(input("Masukkan berat badan anda (dalam kg): "))
             height = int(input("Masukkan tinggi badan anda (dalam cm): "))
             break
         except ValueError:
@@ -104,7 +106,8 @@ def new_user(username, email, password): # untuk memasukkan data user baru
             gender = 'p'
             print()
             break
-        else: print("Mohon masukkan antara 'L' atau 'P'.")
+        else:
+            print("Mohon masukkan antara 'L' atau 'P'.")
 
     print("Level Aktivitas: ")
     print("_____________________________________")
@@ -126,18 +129,23 @@ def new_user(username, email, password): # untuk memasukkan data user baru
             break
         else:
             print("Mohon pilih antara 1, 2, 3, 4, 5, atau 6.")
-        
-    with open(f'userinfo/{username}.json', 'w') as file:
-        file.write("{\n")
-        file.write(f'"username": "{username}",\n')
-        file.write(f'"password": "{password}",\n')
-        file.write(f'"email": "{email}",\n')
-        file.write(f'"registration_date": "{day}",\n')
-        file.write(f'"height": "{height}",\n')
-        file.write(f'"gender": "{gender}",\n')
-        file.write(f'"activity_level": "{activity_level}",\n')
-        file.write('"weight_history": ' + '{'+f'"{day}":' +  f'{weight}' + '}\n')
-        file.write("}\n")
-        
+
+    with open(f'userinfo/{username}.csv', 'w', newline='') as file:
+        writer = csv.writer(file)
+        writer.writerow(["username", "password", "email", "registration_date", "height", "gender", "activity_level", "weight_history"])
+        writer.writerow([username, password, email, day, height, gender, activity_level, f'{{"{day}": {weight}}}'])
+
+    sleep(.3)
+    print("Menyimpan data...")
+    sleep(1)
+    print("Data telah tersimpan! Sedang login...")
+    sleep(1)
+
+
 if __name__ == '__main__':
-    main()
+    try:
+        main()
+    except KeyboardInterrupt:
+        print("\nExiting application...")
+        sleep(.3)
+        exit()

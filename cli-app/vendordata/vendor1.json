@@ -1,0 +1,12 @@
+{
+    "vendorName": "vendor1",
+    "food1": 
+    {
+        "calories": 10,
+        "fat": 10,
+        "sugar": 10,
+        "protein": 10,
+        "carbohydrates": 10,
+        "price": 10
+    }
+}
