@@ -1,5 +1,5 @@
 import login
-from pyfiglet import Figlet
+from figletrender import figlet_render
 from time import sleep
 import json
 import pandas as pd
@@ -12,20 +12,6 @@ def main():
 
     with open(f'userinfo/{username}.csv', 'r') as file: # membuka data user sebagai dictionary
         user_data = json.load(file)
-    
-"""
-user dictionary example
-{
-    "username": "username",
-    "password": "username",
-    "email": "email@email.com",
-    "registration_date": "2023-12-13",
-    "height": "80",
-    "gender": "0",
-    "activity_level": "3",
-    "weight_history": {"2023-12-13":80}
-}
-"""
 
 def user_login():
     selection = user_selection()
@@ -59,10 +45,7 @@ def user_selection():
                 raise ValueError("Mohon pilih nomor 1 atau 2.")
         except ValueError:
             print("Mohon pilih nomor 1 atau 2.")
-    
-def figlet_render(text, font='drpepper'):
-    fig = Figlet(font = font)
-    return fig.renderText(text)
+
 
 if __name__ == '__main__':
     while True:

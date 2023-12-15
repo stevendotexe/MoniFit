@@ -132,9 +132,9 @@ def new_user(username, email, password):
 
     with open(f'userinfo/{username}.csv', 'w', newline='') as file:
         writer = csv.writer(file)
-        writer.writerow(["username", "password", "email", "registration_date", "height", "gender", "activity_level", "weight_history"])
-        writer.writerow([username, password, email, day, height, gender, activity_level, f'{{"{day}": {weight}}}'])
-
+        writer.writerow([username, password, email, day, height, gender, activity_level])
+        writer.writerow([day, weight])
+        
     sleep(.3)
     print("Menyimpan data...")
     sleep(1)
