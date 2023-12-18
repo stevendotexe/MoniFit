@@ -3,6 +3,7 @@ from figletrender import figlet_render
 from time import sleep
 import json
 import pandas as pd
+import csv
 
 def main():
     username = user_login()
@@ -11,7 +12,7 @@ def main():
     print(figlet_render(f"Selamat datang,  {username}", 'mini'))
 
     with open(f'userinfo/{username}.csv', 'r') as file: # membuka data user sebagai dictionary
-        user_data = json.load(file)
+        user_data = csv.DictReader(file, fieldnames = [])
 
 def user_login():
     selection = user_selection()

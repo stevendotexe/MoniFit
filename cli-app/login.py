@@ -2,7 +2,7 @@ from datetime import date
 from time import sleep
 import os
 import csv
-import hashlib
+import perhitungan
 
 
 def main():
@@ -143,9 +143,9 @@ def new_user(username, email, password):
 
 
 if __name__ == '__main__':
-    try:
-        main()
-    except KeyboardInterrupt:
-        print("\nExiting application...")
-        sleep(.3)
-        exit()
+        try:
+            main()
+        except KeyboardInterrupt:
+            print("\nExiting application...")
+            sleep(.3)
+            exit()
