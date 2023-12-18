@@ -12,7 +12,7 @@ def main():
     print(figlet_render(f"Selamat datang,  {username}", 'mini'))
 
     with open(f'userinfo/{username}.csv', 'r') as file: # membuka data user sebagai dictionary
-        user_data = csv.DictReader(file, fieldnames = [])
+        print(file)
 
 def user_login():
     selection = user_selection()

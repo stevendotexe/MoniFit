@@ -21,6 +21,10 @@ def main():
             pass
 
 
+import csv
+from time import sleep
+import os
+
 def login():
     usernames = [user.rstrip('.csv') for user in os.listdir("userinfo")]
     while True:
@@ -28,7 +32,8 @@ def login():
         if username in usernames:
             with open(f'userinfo/{username}.csv', 'r') as file:
                 data = csv.reader(file)
-                data = list(data)[1]  # ubah csv jadi list
+                data = list(data)[0]  # ubah csv jadi list
+            print(data)
             while True:
                 pwinput = input("Password: ")
                 if pwinput == data[1]:  # validasi password
@@ -61,6 +66,8 @@ def login():
                         raise ValueError
                 except ValueError:
                     print("Mohon pilih antara 1 dan 2.")
+
+login()
 
 
 def register():
