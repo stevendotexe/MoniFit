@@ -1,8 +1,8 @@
-Nama Makanan,Harga,Protein,Karbohidrat,Lemak,Kalori
-Bakmie Amoy Asin,13000,15,60,15,300
-Bakmie Amoy Manis,13000,10,70,15,300
-Bakmie Amoy Asin Pedas,13000,20,60,15,300
-Bakmie Amoy Manis Pedas,13000,10,60,15,250
-Kerupuk Pangsit,3000,3,5,3,40
-Pangsit Rebus,2000,3,5,3,30
-Pangsit Goreng,2000,5,10,10,100
+No,Nama Makanan,Harga,Protein,Karbohidrat,Lemak,Kalori
+1,Bakmie Amoy Asin,13000,15,60,15,300
+2,Bakmie Amoy Manis,13000,10,70,15,300
+3,Bakmie Amoy Asin Pedas,13000,20,60,15,300
+4,Bakmie Amoy Manis Pedas,13000,10,60,15,250
+5,Kerupuk Pangsit,3000,3,5,3,40
+6,Pangsit Rebus,2000,3,5,3,30
+7,Pangsit Goreng,2000,5,10,10,100

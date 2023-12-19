@@ -1,10 +1,10 @@
-Nama Makanan,Harga,Protein,Karbohidrat,Lemak,Kalori
-Ayam Geprek Sambal Raozz,15.000,22,10,5,300
-Ayam Geprek Sambal Rampuzz,15.000,22,10,5,300
-Ayam Geprek Sambal Goang,15.000,23,12,5,300
-Ayam Geprek Sambal Hejo,15.000,21,11,5,300
-Ayam Geprek Sambal Matah,15.000,20,10,5,300
-Ayam Geprek Sambal Daun Jeruk,15.000,24,13,5,300
-Telur Dadar,3.000,6,2,5,72
-Kol Crispy,5.000,2,5,10,152
-Ayam Geprek,10.000,25,14,5,301
+No,Nama Makanan,Harga,Protein,Karbohidrat,Lemak,Kalori
+1,Ayam Geprek Sambal Raozz,15.000,22,10,5,300
+2,Ayam Geprek Sambal Rampuzz,15.000,22,10,5,300
+3,Ayam Geprek Sambal Goang,15.000,23,12,5,300
+4,Ayam Geprek Sambal Hejo,15.000,21,11,5,300
+5,Ayam Geprek Sambal Matah,15.000,20,10,5,300
+6,Ayam Geprek Sambal Daun Jeruk,15.000,24,13,5,300
+7,Telur Dadar,3.000,6,2,5,72
+8,Kol Crispy,5.000,2,5,10,152
+9,Ayam Geprek,10.000,25,14,5,301

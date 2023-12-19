@@ -1,19 +1,19 @@
-import login
 from figletrender import figlet_render
 from time import sleep
+import login
 import pandas as pd
 import csv
 import tabulate
 
 def main():
     username = user_login()
-
+    user = f'userinfo/{username}/userdata.csv'
     print(figlet_render("MoniFit", font='nancyj'))
     print(figlet_render(f"Selamat datang,  {username}", 'mini'))
+    menu_selection()
 
-    user = f'userinfo/{username}/userdata.csv'
-    with open(user, 'r') as file: # membuka data user sebagai dictionary
-        pass
+    cekbmr()
+
 
 def user_login():
     selection = user_selection()
@@ -28,7 +28,7 @@ def user_login():
     else:
         sleep(0.5); print("Exiting application..."); sleep(2); exit()
         
-def select_food(vendor):
+def select_food(vendor): # to be completed
     data = []
     with open(vendor) as file:
         readfile = csv.DictReader(file)
@@ -56,6 +56,9 @@ def user_selection():
         except ValueError:
             print("Mohon pilih nomor 1 atau 2.")
 
+def menu_selection():
+    print("1. Cek BMR (kalori), BMI, RDA Protein, RDA Lemak, RDA Karbohidrat")
+    print("2. ")
 
 if __name__ == '__main__':
     while True:

@@ -1,11 +1,11 @@
-Nama Makanan,Harga,Protein,Karbohidrat,Lemak,Kalori
-Ramen Chicken Katsu,15000,41,49,9,427
-Ramen Smoke Beef,15000,34,34,11,258
-Ramen fish roll,15000,8,33,3.5,228
-Ramen sosis,15000,17,29,14,282
-Gyoza,10000,10.8,21.7,5.1,92
-Dumpling sostel,8000,4,8,2,70
-Baso aci,5000,1.99,48.5,1.93,118
-Batagor,5000,2.06,5.83,3,116
-Chicken katsu,7000,31,22,11,290
-Sosis,3000,12,9,8,92
+No,Nama Makanan,Harga,Protein,Karbohidrat,Lemak,Kalori
+1,Ramen Chicken Katsu,15000,41,49,9,427
+2,Ramen Smoke Beef,15000,34,34,11,258
+3,Ramen fish roll,15000,8,33,3.5,228
+4,Ramen sosis,15000,17,29,14,282
+5,Gyoza,10000,10.8,21.7,5.1,92
+6,Dumpling sostel,8000,4,8,2,70
+7,Baso aci,5000,1.99,48.5,1.93,118
+8,Batagor,5000,2.06,5.83,3,116
+9,Chicken katsu,7000,31,22,11,290
+10,Sosis,3000,12,9,8,92
