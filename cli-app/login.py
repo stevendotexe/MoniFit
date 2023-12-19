@@ -30,7 +30,7 @@ def login():
     while True:
         username = input("Username: ")
         if username in usernames:
-            with open(f'userinfo/{username}.csv', 'r') as file:
+            with open(f'userinfo/{username}/userdata.csv', 'r') as file:
                 data = csv.reader(file)
                 data = list(data)[0]  # ubah csv jadi list
             print(data)
@@ -66,9 +66,6 @@ def login():
                         raise ValueError
                 except ValueError:
                     print("Mohon pilih antara 1 dan 2.")
-
-login()
-
 
 def register():
     email = input("Masukkan email: ")
@@ -137,9 +134,14 @@ def new_user(username, email, password):
         else:
             print("Mohon pilih antara 1, 2, 3, 4, 5, atau 6.")
 
-    with open(f'userinfo/{username}.csv', 'w', newline='') as file:
+    
+    os.mkdir(f'userinfo/{username}')
+    with open(f'userinfo/{username}/userdata.csv', 'w', newline='') as file:
         writer = csv.writer(file)
         writer.writerow([username, password, email, day, height, gender, activity_level])
+        
+    with open(f'userinfo/{username}/weight_history.csv', 'w') as file:
+        writer = csv.writer(file)
         writer.writerow([day, weight])
         
     sleep(.3)

@@ -1,9 +1,9 @@
 import login
 from figletrender import figlet_render
 from time import sleep
-import json
 import pandas as pd
 import csv
+import tabulate
 
 def main():
     username = user_login()
@@ -11,8 +11,9 @@ def main():
     print(figlet_render("MoniFit", font='nancyj'))
     print(figlet_render(f"Selamat datang,  {username}", 'mini'))
 
-    with open(f'userinfo/{username}.csv', 'r') as file: # membuka data user sebagai dictionary
-        print(file)
+    user = f'userinfo/{username}/userdata.csv'
+    with open(user, 'r') as file: # membuka data user sebagai dictionary
+        pass
 
 def user_login():
     selection = user_selection()
@@ -27,6 +28,14 @@ def user_login():
     else:
         sleep(0.5); print("Exiting application..."); sleep(2); exit()
         
+def select_food(vendor):
+    data = []
+    with open(vendor) as file:
+        readfile = csv.DictReader(file)
+        for row in readfile:
+            data.append(row)
+    
+    return tabulate(data, headers="keys", tablefmt='grid')
 
 def user_selection():
     print("Selamat datang di\n"+figlet_render("MoniFit\n")+"Pilih opsi:")
