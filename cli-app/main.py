@@ -1,19 +1,18 @@
 from figletrender import figlet_render
 from time import sleep
 import login
-import pandas as pd
+import pandas as pd # prep for pandas implementation
 import csv
 import tabulate
+
 
 def main():
     username = user_login()
     user = f'userinfo/{username}/userdata.csv'
     print(figlet_render("MoniFit", font='nancyj'))
     print(figlet_render(f"Selamat datang,  {username}", 'mini'))
-    menu_selection()
 
-    cekbmr()
-
+    mainmenu() # display main menu
 
 def user_login():
     selection = user_selection()
@@ -56,9 +55,21 @@ def user_selection():
         except ValueError:
             print("Mohon pilih nomor 1 atau 2.")
 
-def menu_selection():
+def mainmenu():
     print("1. Cek BMR (kalori), BMI, RDA Protein, RDA Lemak, RDA Karbohidrat")
-    print("2. ")
+    print("2. Lihat Rekomendasi Makanan (WIP)")
+    print("3. Ubah data user (WIP)")
+    print("4. Lihat restoran di sekitar")
+    possibilities = [1, 2, 3]
+    while True:
+        try:
+            selection = int(input("Pilihan: "))
+            if selection in possibilities:
+                return selection
+            else:
+                raise ValueError
+        except ValueError:
+            print("Mohon pilih nomor 1 atau 2.")
 
 if __name__ == '__main__':
     while True:
