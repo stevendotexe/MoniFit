@@ -13,3 +13,4 @@ def rda(gender, weight, height, age, activity_level):
     protein_rda = weight * 0.8
 
     return fat_rda, protein_rda
+

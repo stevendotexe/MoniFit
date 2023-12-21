@@ -4,6 +4,7 @@ import login
 import pandas as pd # prep for pandas implementation
 import csv
 import tabulate
+import perhitungan as calc
 
 
 def main():
@@ -12,7 +13,17 @@ def main():
     print(figlet_render("MoniFit", font='nancyj'))
     print(figlet_render(f"Selamat datang,  {username}", 'mini'))
 
-    mainmenu() # display main menu
+    with open(user) as user: # hold user data here
+        data = csv.reader(user)
+        for row in data:
+            username = row[0]
+            weight = row[4]
+            gender = row[5]
+            activity_level = row[6]
+
+    selection = mainmenu() # display main menu
+
+
 
 def user_login():
     selection = user_selection()
@@ -35,6 +46,10 @@ def select_food(vendor): # to be completed
             data.append(row)
     
     return tabulate(data, headers="keys", tablefmt='grid')
+
+def bmrbmirda(username, weight, gender, activity_level):
+    # get user data: gender, weight, height, age, activity level
+    pass
 
 def user_selection():
     print("Selamat datang di\n"+figlet_render("MoniFit\n")+"Pilih opsi:")

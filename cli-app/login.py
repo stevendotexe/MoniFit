@@ -20,11 +20,6 @@ def main():
         else:
             pass
 
-
-import csv
-from time import sleep
-import os
-
 def login():
     usernames = [user.rstrip('.csv') for user in os.listdir("userinfo")]
     while True:
@@ -126,24 +121,23 @@ def new_user(username, email, password):
     print("| Olahraga intens = 45 - 120 menit aktivitas jantung yang naik")
     print("| Olahraga sangat intens = 45 - 120 menit aktivitas jantung yang naik")
     print("_____________________________________")
-    possibilities = ['1', '2', '3', '4', '5', '6']
+    possibilities = {'1': 1.2, '2': 1.375, '3': 1.55, '4': 1.55, '5': 1.725, '6': 1.9}
+
     while True:
-        activity_level = input("Pilihan: ")
-        if activity_level in possibilities:
+        activity = input("Pilihan: ") # set the activity level to the appropriate level
+        if activity in possibilities:
+            activity_level = possibilities[activity]
             break
         else:
             print("Mohon pilih antara 1, 2, 3, 4, 5, atau 6.")
 
-    
     os.mkdir(f'userinfo/{username}')
     with open(f'userinfo/{username}/userdata.csv', 'w', newline='') as file:
-        writer = csv.writer(file)
-        writer.writerow([username, password, email, day, height, gender, activity_level])
-        
-    with open(f'userinfo/{username}/weight_history.csv', 'w') as file:
-        writer = csv.writer(file)
-        writer.writerow([day, weight])
-        
+        file.write(f"{username},{password},{email},{day},{height},{gender},{activity_level}")
+
+    with open(f'userinfo/{username}/weight_history.csv', 'w', newline='') as file:
+        file.write(f"{day},{weight}")
+
     sleep(.3)
     print("Menyimpan data...")
     sleep(1)
