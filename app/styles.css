@@ -26,6 +26,7 @@ body{
 .maincontent{
     width: 80%;
     margin-left: 10vh;
+    margin-right: 10vh;
     margin-top: 5vh;
 }
 .maincontent h1, h2, h3, p{

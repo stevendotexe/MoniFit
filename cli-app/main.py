@@ -1,6 +1,7 @@
 from figletrender import figlet_render
 from time import sleep
 from datetime import date
+from cool import coolStuff
 import login
 import pandas as pd # prep for pandas implementation
 import csv
@@ -13,7 +14,9 @@ import vendorselection as vsel
 def main():
     username = user_login()
     user = f'userinfo/{username}/userdata.csv'
+    coolStuff(); sleep(0.5)
     print(figlet_render("MoniFit", font='nancyj'))
+    sleep(1)
     print(figlet_render(f"Selamat datang,  {username}", 'mini'))
 
     with open(user) as user: # hold user data here
@@ -59,7 +62,7 @@ def bmrbmirda(username, height, weight, gender, age, activity_level): # done
     bmi = calc.bmi(weight, height)
     carbsRDA, fatRDA, proteinRDA = calc.rda(gender, weight, height, age, activity_level)
 
-    print(username)
+    print("Perhitungan untuk", username)
     user_data = [
         {'Calories': calories, 'Body Mass Index': f'{bmi:.2f}kg/m²', 'Carbohydrates RDA': carbsRDA, 'Fat RDA': fatRDA, 'Protein RDA': proteinRDA}
     ]
@@ -113,14 +116,13 @@ def add_weight(username):
             reader = csv.reader(file)
             for row in reader:
                 userinfo.append(row)
-        print(userinfo)
         userinfo[0][4] = new_weight
         
         with open(f'userinfo/{username}/userdata.csv', 'w', newline='') as file:
             writer = csv.writer(file)
             for row in userinfo:
                 writer.writerow(row)
-
+        print("Berat berhasil ditambahkan.")
     except SystemError: print("Berat badan untuk hari ini sudah ditambahkan. Coba lagi besok.")
 
 
