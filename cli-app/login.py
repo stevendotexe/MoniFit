@@ -29,6 +29,7 @@ def login():
                 data = csv.reader(file)
                 data = list(data)[0]  # ubah csv jadi list
             print(data)
+
             while True:
                 pwinput = input("Password: ")
                 if pwinput == data[1]:  # validasi password
@@ -90,6 +91,7 @@ def new_user(username, email, password):
     print("Selamat datang di MoniFit! Agar data kami sesuai dengan perhitungan, mohon masukkan data-data.")
     while True:
         try:
+            age = int(input("Masukkan umur anda: "))
             weight = int(input("Masukkan berat badan anda (dalam kg): "))
             height = int(input("Masukkan tinggi badan anda (dalam cm): "))
             break
@@ -133,7 +135,7 @@ def new_user(username, email, password):
 
     os.mkdir(f'userinfo/{username}')
     with open(f'userinfo/{username}/userdata.csv', 'w', newline='') as file:
-        file.write(f"{username},{password},{email},{day},{height},{gender},{activity_level}")
+        file.write(f"{username},{password},{email},{day},{weight},{height},{gender},{age},{activity_level}")
 
     with open(f'userinfo/{username}/weight_history.csv', 'w', newline='') as file:
         file.write(f"{day},{weight}")
