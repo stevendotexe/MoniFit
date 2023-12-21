@@ -13,14 +13,54 @@
       </head>
 </head>
 <body>
-    <div class="main-content">
+    <div class="header">
         <img src="img/MoniFit-Logo.png">
-        <h1>Application Development</h1>
-        <p>Progress: 50%</p>
-        <br>
-        <p>Last Progress: Added data for vendors (20/12/23)</p>
-        <a class="button-custom" href="https://github.com/stevendotexe/MoniFit">GitHub</a>
     </div>
+    
+    <div class="maincontent">
+        <h1> MoniFit </h1>
+        <p>
+            Monifit adalah aplikasi inovatif yang dirancang untuk mempermudah pengguna dalam mengelola asupan nutrisi harian mereka. Dengan fokus pada perhitungan kalori, protein, lemak, dan karbohidrat, Monifit menjadi alat yang sangat berguna bagi individu yang peduli terhadap kesehatan dan kebugaran mereka. Aplikasi ini memungkinkan pengguna untuk merencanakan dan memantau pola makan sehari-hari, menyesuaikan asupan nutrisi sesuai dengan kebutuhan pribadi, dan menyusun rencana makanan yang disesuaikan. Selain itu, Monifit juga dilengkapi dengan database nutrisi yang kaya, memudahkan pengguna untuk melacak konsumsi nutrisi secara akurat.
+        <h3>Pembangunan Aplikasi</h3>
+        <p>Saat ini, MoniFit bersifat open-source yang di-host di GitHub. Klik di <a href="https://github.com/stevendotexe/MoniFit">sini</a> untuk melihatnya.</p>
+
+        <h3>Sistem MoniFit</h3>
+        <p>
+    
+            MoniFit, sebuah aplikasi yang didedikasikan untuk mengelola nutrisi dan mendorong gaya hidup sehat, dibangun menggunakan Python3 sebagai bahasa pemrograman utama. Keputusan ini dibuat dengan cermat untuk memastikan pengembangan yang efisien dan andal. Dalam proses pembangunannya, tim pengembang mengintegrasikan beberapa paket Python, seperti numpy untuk komputasi numerik, pandas untuk manipulasi data, dan flask untuk pengembangan web. Penggunaan Python3 dan paket-paket ini memberikan fondasi kokoh, memungkinkan MoniFit tidak hanya menawarkan antarmuka pengguna yang ramah, tetapi juga fitur-fitur canggih dan analisis nutrisi yang akurat.</p>
+            
+        <div class="box1">
+            
+        def main():<br>
+        ㅤusername = user_login()<br>
+        ㅤuser = f'userinfo/{username}/userdata.csv'<br>
+        ㅤprint(figlet_render("MoniFit", font='nancyj'))<br>
+        ㅤprint(figlet_render(f"Selamat datang,  {username}", 'mini'))<br>
+
+        ㅤwith open(user) as user: # hold user data here<br>
+        ㅤㅤdata = csv.reader(user)<br>
+        ㅤㅤfor row in data:<br>
+        ㅤㅤㅤusername = row[0]<br>
+        ㅤㅤㅤweight = int(row[4])<br>
+        ㅤㅤㅤheight = int(row[5])<br>
+        ㅤㅤㅤgender = row[6]<br>
+        ㅤㅤㅤage = int(row[7])<br>
+        ㅤㅤㅤactivity_level = float(row[8])<br>
+            <br>
+            <p style="color: gray">+ hudnreds of lines...</p>
+        </div>
+        <a href="https://github.com/stevendotexe/MoniFit">
+        <div class="block-items">
+            <div class="block-item">
+                Contribute on <br><br>
+                <img src="img/github.png">
+            </div>
+        </a> 
+        
+        </div>
+
+    </div>
+
     <footer>
         <div class="box">
             <img src="img/MoniFit-Logo.png">
@@ -29,5 +69,5 @@
             <p><i>Software idea by Steven Martua C. Simbolon. <br> MoniFit Logo coined by M. Rafie Afkar Y. <br> logo made by Steven Martua C. Simbolon. <br> Website hosted by GitHub Pages</i></p>
         </div>
     </footer>
+    
 </body>
-</html>
