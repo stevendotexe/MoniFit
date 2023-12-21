@@ -1,11 +1,13 @@
 from figletrender import figlet_render
 from time import sleep
+from datetime import date
 import login
 import pandas as pd # prep for pandas implementation
 import csv
 from tabulate import tabulate
 import perhitungan as calc
 import os
+import vendorselection as vsel
 
 
 def main():
@@ -27,15 +29,15 @@ def main():
 
         # print(f"Username: {username} | Weight: {weight} | Height: {height} | Gender: {gender.upper()} | Activity Level: {activity_level}")
 
-    selection = mainmenu(username, height, weight, gender, age, activity_level) # display main menu
-
+    mainmenu(username, height, weight, gender, age, activity_level) # display main menu
 
 def mainmenu(username, height, weight, gender, age, activity_level):
     print("1. Cek BMR (kalori), BMI, RDA Protein, RDA Lemak, RDA Karbohidrat")
     print("2. Lihat Rekomendasi Makanan (WIP)")
     print("3. Ubah data user (WIP)")
     print("4. Lihat restoran di sekitar")
-    possibilities = [1, 2, 3, 4]
+    print("5. Tambah sejarah berat hari ini")
+    possibilities = [1, 2, 3, 4, 5]
     while True:
         try:
             selection = int(input("Pilihan: "))
@@ -43,20 +45,13 @@ def mainmenu(username, height, weight, gender, age, activity_level):
                 if selection == 1: bmrbmirda(username, height, weight, gender, age, activity_level)
                 elif selection == 2: print("Work in progress.")
                 elif selection == 3: print("Work in progress.")
-                else: print("Work in progress.")
+                elif selection == 4: vendor_selection()
+                else: add_weight(username)
             else:
                 raise ValueError
         except ValueError:
-            print("Mohon pilih nomor 1, 2, 3, atau 4.")
-        
-def select_food(vendor): # to be completed
-    data = []
-    with open(vendor) as file:
-        readfile = csv.DictReader(file)
-        for row in readfile:
-            data.append(row)
+            print("Mohon pilih nomor 1, 2, 3, 4, dan 5.")
     
-    return tabulate(data, headers="keys", tablefmt='grid')
 
 def bmrbmirda(username, height, weight, gender, age, activity_level): # done
     
@@ -70,6 +65,65 @@ def bmrbmirda(username, height, weight, gender, age, activity_level): # done
     ]
 
     print(tabulate(user_data, headers='keys', tablefmt='grid'))
+
+def vendor_selection(): # to be completed
+    print("Nama-nama vendor: ")
+    for index, vendor in enumerate(vsel.vendor_names()):
+        print(f"{index + 1}. {vendor}")
+    
+    while True:
+        vendor_select = input("Pilih nama vendor: ")
+        vendor_name = vsel.vendor_foods(vendor_select)
+        if vendor_name == -1: 
+            print("Vendor dengan nama", vendor_select, "tidak ditemukan.")
+        else: 
+            break
+
+    print(tabulate(vendor_name, headers='keys', tablefmt='pretty'))
+
+def add_weight(username):
+    while True:
+        try:    
+            new_weight = int(input("Masukkan berat hari ini: "))
+            break
+        except ValueError:
+            print("Berat harus nomor. Coba lagi.")
+
+    today_date = f"{date.today()}"
+
+    try:
+        with open(f'userinfo/{username}/weight_history.csv') as file:
+
+            reader = csv.reader(file)
+
+            last_weight_addition = None
+
+            for row in reader:
+                last_weight_addition = row[0]
+            
+            if last_weight_addition.strip() == today_date:
+                raise SystemError
+                      
+        with open(f'userinfo/{username}/weight_history.csv', 'a') as file:
+            file.write(f"\n{today_date},{new_weight}")
+
+        # update user info
+        userinfo = []
+        with open(f'userinfo/{username}/userdata.csv') as file:
+            reader = csv.reader(file)
+            for row in reader:
+                userinfo.append(row)
+        print(userinfo)
+        userinfo[0][4] = new_weight
+        
+        with open(f'userinfo/{username}/userdata.csv', 'w', newline='') as file:
+            writer = csv.writer(file)
+            for row in userinfo:
+                writer.writerow(row)
+
+    except SystemError: print("Berat badan untuk hari ini sudah ditambahkan. Coba lagi besok.")
+
+
 
 def user_login(): # lupa_password to be completed
     selection = user_selection()
@@ -99,7 +153,7 @@ def user_selection(): # main menu login
             if selection in possibilities:
                 return selection
             else:
-                raise ValueError("Mohon pilih nomor 1 atau 2.")
+                raise ValueError("Mohon pilih nomor 1, 2, 3, dan 4.")
         except ValueError:
             print("Mohon pilih nomor 1 atau 2.")
 
@@ -110,6 +164,6 @@ if __name__ == '__main__':
         except KeyboardInterrupt:
             s = (input("\nExit application? (Y/N): ").lower())
             if s == 'y' or s == 'yes':
-                print("\nExiting application..."); sleep(1); exit()
+                print("\nExiting application..."); sleep(.1); exit()
             else:
                 pass

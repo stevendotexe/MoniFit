@@ -2,8 +2,6 @@ from datetime import date
 from time import sleep
 import os
 import csv
-import perhitungan
-
 
 def main():
     while True:
@@ -45,7 +43,7 @@ def login():
                             elif selection == 2:
                                 exit()
                             else:
-                                raise ValueError("Mohon pilih antara 1 dan 2.")
+                                raise ValueError
                         except ValueError:
                             print("Mohon pilih antara 1 dan 2.")
 

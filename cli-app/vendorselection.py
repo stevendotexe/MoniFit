@@ -19,10 +19,14 @@ def vendor_foods(vendorname):
             reader = csv.DictReader(file)
             data = [row for row in reader]
     except FileNotFoundError:
-        print(f"Restoran dengan nama {vendorname} tidak ditemukan.")
+        return -1
 
     return data
 
-vendor_name = 'DAPUR QUEEN'
-print(figlet_render(vendor_name))
-print(tabulate(vendor_foods(vendor_name), headers='keys', tablefmt='pretty'))
+# print("Nama-nama vendor: ")
+# for index, vendor in enumerate(vendor_names()):
+#     print(f"{index + 1}. {vendor}")
+
+# vendor_name = 'DAPUR QUEEN'
+# print(figlet_render(vendor_name))
+# print(tabulate(vendor_foods(vendor_name), headers='keys', tablefmt='pretty'))
