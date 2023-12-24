@@ -1,0 +1,103 @@
+No,Nama Vendor,Nama Makanan,Harga,Protein,Karbohidrat,Lemak,Kalori
+1,Apel Oren 23,Chicken Moza Stick,15000,20,20,20,300
+2,Apel Oren 23,Sate Lilit Bali,15000,25,16,20,300
+3,Apel Oren 23,Spicy Wings Mozza,15000,25,15,20,300
+4,Apel Oren 23,Chicken Cordon Bleu,15000,20,25,21,315
+5,Apel Oren 23,Korean Garlic Chesee Bread,15000,151,40,20,400
+6,Apel Oren 23,Lasagna,15000,25,50,25,500
+7,Apel Oren 23,Sambosa,15000,5,25,15,250
+8,Apel Oren 23,Risols Luber,12000,6,20,10,200
+9,Apel Oren 23,Risols Ice Cream,12000,6,20,10,200
+10,Apel Oren 23,Yougurt Dessert,12000,4,5,4,70
+11,Ayam Ngajerit,Nasi,5000,2.7,28,0.3,130
+12,Ayam Ngajerit,Ayam Goreng,12000,30,1.8,12,245.9
+13,Ayam Ngajerit,Ayam Bakar,12000,17.14,0,15.85,216
+14,Ayam Ngajerit,Ayam Penyet,12000,25.05,5.29,8.53,199
+15,Ayam Ngajerit,Tahu,2000,8,1.9,4.8,76
+16,Ayam Ngajerit,Tempe,2000,19,9,11,192.9
+17,Ayam Ngajerit,Sambal Cumi,10000,16.1,3.08,1.38,75
+18,Ayam Ngajerit,Sambal Teri,10000,1,3,1.5,30
+19,Ayam Ngajerit,Sambal Bawang,3000,0,2,2,31
+20,Ayam Ngajerit,Sambal Ngajerit,3000,0.3,1.3,2.4,6
+21,Ayam Ngajerit,Sambal Surawung,3000,3.15,0.6,1.3,22
+22,Ayam Ngajerit,Ikan asin,5000,42,0,1.5,193
+23,Ayam Ngajerit,Sayur asem,7000,3.18,12.9,2.76,801
+24,Bakmie Amoy,Bakmie Amoy Asin,13000,15,60,15,300
+25,Bakmie Amoy,Bakmie Amoy Manis,13000,10,70,15,300
+26,Bakmie Amoy,Bakmie Amoy Asin Pedas,13000,20,60,15,300
+27,Bakmie Amoy,Bakmie Amoy Manis Pedas,13000,10,60,15,250
+28,Bakmie Amoy,Kerupuk Pangsit,3000,3,5,3,40
+29,Bakmie Amoy,Pangsit Rebus,2000,3,5,3,30
+30,Bakmie Amoy,Pangsit Goreng,2000,5,10,10,100
+31,Batagor Hegar,Batagor kering,10000,15,30,15,200
+32,Batagor Hegar,Batagor Kuah,10000,20,40,20,300
+33,Batagor Hegar,Batagor Kuah Special,12000,24,45,35,310
+34,Daput Queen,Nasi Bakar Ayam,13000,25,43,14,325
+35,Daput Queen,Nasi Bakar Tongkol,13000,24,40,14,320
+36,Daput Queen,Nasi Bakar Teri Jengkol,13000,24,40,14,315
+37,Daput Queen,Nasi Bakar Cumi Asin Pedas,16000,25,43,14,330
+38,Dapur Raozz,Ayam Geprek Sambal Raozz,15000,22,10,5,300
+39,Dapur Raozz,Ayam Geprek Sambal Rampuzz,15000,22,10,5,300
+40,Dapur Raozz,Ayam Geprek Sambal Goang,15000,23,12,5,300
+41,Dapur Raozz,Ayam Geprek Sambal Hejo,15000,21,11,5,300
+42,Dapur Raozz,Ayam Geprek Sambal Matah,15000,20,10,5,300
+43,Dapur Raozz,Ayam Geprek Sambal Daun Jeruk,15000,24,13,5,300
+44,Dapur Raozz,Telur Dadar,3000,6,2,5,72
+45,Dapur Raozz,Kol Crispy,5000,2,5,10,152
+46,Dapur Raozz,Ayam Geprek,10000,25,14,5,301
+47,DMA Food,Cheese Cedar,12000,21,2,28,350
+48,DMA Food,Choco Nut,10000,12,50,23,400
+49,DMA Food,Chocho Almond,15000,15,52,30,415
+50,DMA Food,Choco Chip,10000,10,70,25,400
+51,DMA Food,Tiramisu Caramel,12000,7,30,18,250
+52,DMA Food,Cheese Mozzarella,15000,25,3,25,250
+53,DMA Food,Milk Oreo,12000,4,10,4,75
+54,DMA Food,Oiginal Susu,5000,4,5,4,70
+55,DMA Food,Seblak Original,5000,5,20,5,150
+56,DMA Food,Seblak Baper,8000,6,21,6,151
+57,DMA Food,Seblak Mager,10000,7,22,7,154
+58,DMA Food,Seblak Galau,10000,8,23,8,153
+59,DMA Food,Seblak Happy Temyum,15000,
+60,Kyokatsu Katsu,Chicken Pop Saos Gochujang,13000,25,30,20,300
+61,Kyokatsu Katsu,Chicken Pop Saos Spicy,13000,25,30,20,300
+62,Kyokatsu Katsu,Chicken Pop Saos Orange,13000,25,30,20,300
+63,Kyokatsu Katsu,Chicken Pop Saos Lemon,13000,25,30,20,300
+64,Kyokatsu Katsu,Chicken Pop Sambel Merah/ Ijo,13000,25,30,20,300
+65,Kyokatsu Katsu,Chicken Pop Sambal Matah ,13000,25,30,20,300
+66,Kyokatsu Katsu,Chicken Pop Saos Mentaiko,13000,25,30,20,300
+67,Kyokatsu Katsu,Katsu Saos Barbeque,15000,25,30,20,300
+68,Kyokatsu Katsu,Katsu Saos Lada Hitam,15000,25,30,20,300
+69,Kyokatsu Katsu,Katsu Sambal Merah/Ijo,15000,25,30,20,300
+70,Kyokatsu Katsu,Katsu Sambal Matah,15000,25,30,20,300
+71,Kyokatsu Katsu,Katsu Saos Mentaiko,15000,25,30,20,300
+72,Kyokatsu Katsu,Keju Mozarella,5000,32,10,28,350
+73,Kyokatsu Katsu,Seawed Crumb,5000,15,50,5,350
+74,Noona Korea,Kimbab,15000,3,32,6.8,290
+75,Noona Korea,Hotteok,8000,4.1,56,7,215
+76,Noona Korea,So-tteok,8000,1,27,9.25,118
+77,Noona Korea,Bungeoppang,8000,2.14,19.92,2.45,83
+78,Noona Korea,Mango milky jelly,10000,0.5,18,5.9,1101
+79,Pastaqia,Mentai Fish Rice,13000,20,25,18,110
+80,Pastaqia,Mentai Nugget Rice,12000,20,25,18,110
+81,Pastaqia,Mentai Chiken Rice,13000,20,25,18,110
+82,Pastaqia,Mentai Saussage Rice,12000,12,10,7,100
+83,Pastaqia,Macaroni Schotel,15000,10,2,3,11
+84,Pastaqia,Spaghetti Brulee,15000,9,6,6,66
+85,Pastaqia,Zuppa Soup,13000,13,25,9,150
+86,Pastaqia,Crab Stick,2000,12,3,4,100
+87,Pastaqia,Mozarella,5000,25,1,20,250
+88,Sukka Ramen,Ramen Chicken Katsu,15000,41,49,9,427
+89,Sukka Ramen,Ramen Smoke Beef,15000,34,34,11,258
+90,Sukka Ramen,Ramen fish roll,15000,8,33,3.5,228
+91,Sukka Ramen,Ramen sosis,15000,17,29,14,282
+92,Sukka Ramen,Gyoza,10000,10.8,21.7,5.1,92
+93,Sukka Ramen,Dumpling sostel,8000,4,8,2,70
+94,Sukka Ramen,Baso aci,5000,1.99,48.5,1.93,118
+95,Sukka Ramen,Batagor,5000,2.06,5.83,3,116
+96,Sukka Ramen,Chicken katsu,7000,31,22,11,290
+97,Sukka Ramen,Sosis,3000,12,9,8,92
+98,Warung Si Goyang,Nasi Kuning Original,8000,8,40,10,300
+99,Warung Si Goyang,Nasi Kuning Special,10000,12,45,15,350
+100,Warung Si Goyang,Nasi Uduk Original,10000,6,40,10,300
+101,Warung Si Goyang,Lotek Original,8000,8,38,10,250
+102,Warung Si Goyang,Lotek + Lontong,10000,12,50,15,350
