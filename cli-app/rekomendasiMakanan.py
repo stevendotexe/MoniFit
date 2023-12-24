@@ -18,5 +18,5 @@ def rekomendasiMakanan():
     lst.append(daftarMakanan[daftarMakanan["No"] == rand]) # masukkan makanan ke lst
   makananRekomendasi = pd.concat(lst) # masukkan lst ke dalam makananRekomendasi
 
-  print(makananRekomendasi)
+  return makananRekomendasi
   
