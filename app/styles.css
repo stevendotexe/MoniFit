@@ -67,6 +67,7 @@ body{
 }
 
 footer{
+    width: 100%;
     display: flex;
     background-color: black;
     color: white;
