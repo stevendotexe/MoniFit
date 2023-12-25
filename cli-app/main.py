@@ -3,7 +3,7 @@ from time import sleep
 from datetime import date
 from cool import coolStuff
 import login
-import pandas as pd # prep for pandas implementation
+import rekomendasiMakanan as rec
 import csv
 from tabulate import tabulate
 import perhitungan as calc
@@ -35,26 +35,26 @@ def main():
     mainmenu(username, height, weight, gender, age, activity_level) # display main menu
 
 def mainmenu(username, height, weight, gender, age, activity_level):
-    print("1. Cek BMR (kalori), BMI, RDA Protein, RDA Lemak, RDA Karbohidrat")
-    print("2. Lihat Rekomendasi Makanan (WIP)")
-    print("3. Ubah data user (WIP)")
-    print("4. Lihat restoran di sekitar")
-    print("5. Tambah sejarah berat hari ini")
-    possibilities = [1, 2, 3, 4, 5]
+   
     while True:
+        print("1. Cek BMR (kalori), BMI, RDA Protein, RDA Lemak, RDA Karbohidrat")
+        print("2. Lihat Rekomendasi Makanan (WIP)")
+        print("3. Ubah data user")
+        print("4. Lihat restoran di sekitar")
+        print("5. Tambah sejarah berat hari ini")
+        possibilities = [1, 2, 3, 4, 5]
         try:
             selection = int(input("Pilihan: "))
             if selection in possibilities:
                 if selection == 1: bmrbmirda(username, height, weight, gender, age, activity_level)
-                elif selection == 2: print("Work in progress.")
-                elif selection == 3: print("Work in progress.")
+                elif selection == 2: food_reccomendation(username)
+                elif selection == 3: login.change_data(username)
                 elif selection == 4: vendor_selection()
                 else: add_weight(username)
             else:
                 raise ValueError
         except ValueError:
             print("Mohon pilih nomor 1, 2, 3, 4, dan 5.")
-    
 
 def bmrbmirda(username, height, weight, gender, age, activity_level): # done
     
@@ -69,18 +69,23 @@ def bmrbmirda(username, height, weight, gender, age, activity_level): # done
 
     print(tabulate(user_data, headers='keys', tablefmt='grid'))
 
-def vendor_selection(): # to be completed
+def vendor_selection():
     print("Nama-nama vendor: ")
     for index, vendor in enumerate(vsel.vendor_names()):
-        print(f"{index + 1}. {vendor}")
-    
+        if not vendor == 'Semua Vendor':
+            print(f"{index + 1}. {vendor}")
+    print("Lihat Semua Vendor - (ketik 'A')")
+
     while True:
         vendor_select = input("Pilih nama vendor: ")
-        vendor_name = vsel.vendor_foods(vendor_select)
-        if vendor_name == -1: 
-            print("Vendor dengan nama", vendor_select, "tidak ditemukan.")
-        else: 
-            break
+        if vendor_select == 'Semua Vendor':
+            pass
+        else:
+            vendor_name = vsel.vendor_foods(vendor_select)
+            if vendor_name == -1: 
+                print("Vendor dengan nama", vendor_select, "tidak ditemukan.")
+            else: 
+                break
 
     print(tabulate(vendor_name, headers='keys', tablefmt='pretty'))
 
@@ -123,9 +128,41 @@ def add_weight(username):
             for row in userinfo:
                 writer.writerow(row)
         print("Berat berhasil ditambahkan.")
-    except SystemError: print("Berat badan untuk hari ini sudah ditambahkan. Coba lagi besok.")
+    except SystemError: sleep(1); print("Berat badan untuk hari ini sudah ditambahkan. Coba lagi besok."); sleep(2); 
+    i = 3; 
+    while i > 0:
+        print(f"Kembali ke menu utama dalam {i}"); sleep(1)
+        i -= 1
 
+def food_reccomendation(username):
+    print("Generating food recommendations....")
+    sleep(1)
+    todays_date = date.today()
+    food_list, food_rec = rec.rekomendasiMakanan()
+    food_rec.to_csv(f"userinfo/{username}/{todays_date}-foodrec")
+    print(food_rec)
 
+    while True:
+        try:
+            selection = int(input("1. Ubah makananan\n2. Lanjut\nPilihan: "))
+            if selection < 1 or selection > 2:
+                raise ValueError
+            else: break
+        except ValueError:
+            print("Mohon pilih antara 1, atau 2.")
+    
+    if selection == 1:
+        sel = [1, 2, 3]
+        try:
+            selection = int(input("Ubah makanan 1, 2, atau 3? "))
+            if selection not in sel:
+                raise ValueError
+        except ValueError:
+            print("Mohon pilih antara 1, 2, atau 3.")
+    else: pass
+
+    if selection == 1:
+        print(food_list)
 
 def user_login(): # lupa_password to be completed
     selection = user_selection()

@@ -1,8 +1,5 @@
 import csv
 import os
-from tabulate import tabulate
-from figletrender import figlet_render
-
 def vendor_names():
     a = os.listdir("vendordata")
     vlist = []

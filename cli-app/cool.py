@@ -6,7 +6,7 @@ def coolStuff():
     x = 1
     y = 1
     for _ in range(40):
-        y += 3
+        y += 1
         x += 0.1
 
         selected_color = choice(['red', 'green', 'blue'])
@@ -14,3 +14,6 @@ def coolStuff():
         cprint(print_this, selected_color)
 
         sleep(int(abs(cos(x) * 69)) / 3000)
+
+if __name__ == '__main__':
+    coolStuff()

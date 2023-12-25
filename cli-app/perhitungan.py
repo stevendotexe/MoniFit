@@ -11,10 +11,11 @@ def bmi(weight, height):
     return(weight / ((height/100)*height) * 100)
 
 def rda(gender, weight, height, age, activity_level):
-    bmrr = bmr(gender, weight, height, age, activity_level)
-    carbs_rda = (bmrr * 50) / 100
-    protein_rda = (bmrr * 0.25) / 100
-    fat_rda = (bmrr * 0.25) / 100
+    # adjusted for weight loss
+    bmrr = bmr(gender, weight, height, age, activity_level) 
+    carbs_rda = (bmrr * .5)
+    protein_rda = (bmrr * 0.25)
+    fat_rda = (bmrr * 0.25)
     
     return carbs_rda, fat_rda, protein_rda
 

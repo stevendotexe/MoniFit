@@ -3,7 +3,7 @@ import random as rd
 
 # read file csv
 def rekomendasiMakanan():
-  daftarMakanan = pd.read_csv("cli-app/vendordata/daftar_makanan.csv")
+  daftarMakanan = pd.read_csv("vendordata/Semua Vendor.csv")
 
   makananRekomendasi = pd.DataFrame() # buat variable kosong yg menampung 3 makanan rekomen
   lst = [] # list kosong yg nanti akan dimasukkan ke dataframe
@@ -18,5 +18,5 @@ def rekomendasiMakanan():
     lst.append(daftarMakanan[daftarMakanan["No"] == rand]) # masukkan makanan ke lst
   makananRekomendasi = pd.concat(lst) # masukkan lst ke dalam makananRekomendasi
 
-  return makananRekomendasi
-  
+  return daftarMakanan, makananRekomendasi
+
