@@ -10,10 +10,12 @@ def coolStuff():
         x += 0.1
 
         selected_color = choice(['red', 'green', 'blue'])
-        print_this = ' ' * int(abs(sin(y) * 69)) + '|'
+        print_this = ' ' * int(abs(sin(y) * 70)) + '|'
         cprint(print_this, selected_color)
 
-        sleep(int(abs(cos(x) * 69)) / 3000)
+        sleep(int(abs(cos(x) * 125)) / 4500)
 
-if __name__ == '__main__':
+if __name__ == '__main__': # for testing purposes
     coolStuff()
+
+    

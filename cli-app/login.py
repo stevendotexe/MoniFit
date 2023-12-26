@@ -66,7 +66,6 @@ def login():
 def register():
     email = input("Masukkan email: ")
     usernames = [user.rstrip('.csv') for user in os.listdir("userinfo")]
-    print(usernames)
 
     while True:
         username = input("Masukkan username: ")
