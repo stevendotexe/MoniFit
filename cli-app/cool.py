@@ -10,7 +10,9 @@ def coolStuff():
         x += 0.1
 
         selected_color = choice(['red', 'green', 'blue'])
+
         print_this = ' ' * int(abs(sin(y) * 70)) + '|'
+        
         cprint(print_this, selected_color)
 
         sleep(int(abs(cos(x) * 125)) / 4500)
