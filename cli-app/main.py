@@ -39,11 +39,12 @@ def mainmenu(username, height, weight, gender, age, activity_level):
    
     while True:
         print("1. Cek BMR (kalori), BMI, RDA Protein, RDA Lemak, RDA Karbohidrat")
-        print("2. Lihat Rekomendasi Makanan (WIP)")
+        print("2. Lihat Rekomendasi Makanan")
         print("3. Ubah data user")
         print("4. Lihat restoran di sekitar")
         print("5. Tambah sejarah berat hari ini")
-        possibilities = [1, 2, 3, 4, 5]
+        print("6. Cari data makanan")
+        possibilities = [1, 2, 3, 4, 5, 6]
         try:
             selection = int(input("Pilihan: "))
             if selection in possibilities:
@@ -51,7 +52,8 @@ def mainmenu(username, height, weight, gender, age, activity_level):
                 elif selection == 2: food_recommendation(username)
                 elif selection == 3: login.change_data(username)
                 elif selection == 4: vendor_selection()
-                else: add_weight(username)
+                elif selection == 5: add_weight(username)
+                else: food_item_search()
             else:
                 raise ValueError
         except ValueError:
@@ -207,12 +209,27 @@ def food_recommendation(username): # fungsi rekomendasi makanan
                       food_rec.loc[index, "No"] = last_number  
                 
                 # simpan dataframe ke dalam csv
-                food_rec.to_csv(path, mode="a", header=not  os.path.exists(path), index=False)
-                print("[🕛] Menyimpan data..."); sleep(1)
-                print("[✅] Data berhasil tersimpan.\n")
+                food_rec.to_csv(path, mode="w", header=not  os.path.exists(path), index=False)
+                print("|⌛ | Menyimpan data..."); sleep(1)
+                print("|✔️  | Data berhasil tersimpan.\n")
                 break
         except ValueError:
-            print("Mohon pilih antara 1, atau 2.")
+            print("Mohon pilih antara 1 atau 2.")
+
+def food_item_search():
+    while True:
+        query = input("Makanan yang ingin dicari: ")
+        result = vsel.food_search(query)
+
+        if not result == None:
+            print(tabulate(result, headers='keys', tablefmt="pretty"))
+        else:
+            print(f"Makananan '{query}' tidak ditemukan.")
+
+        sel = input("Cari lagi? (Y/N): ").lower() # tanya user jika mau cari lagi
+        if sel == 'y': pass
+        else: break
+
 
 def user_login():
     selection = user_selection()

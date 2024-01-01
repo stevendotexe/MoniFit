@@ -22,36 +22,36 @@ def vendor_foods(vendorname):
 
     return data
 
-def vendor_search():
-    vendor_data = []  # list vendor_data menyimpan data vendor ke memori
-    with open('vendordata/Semua Vendor.csv') as file:
-        reader = csv.DictReader(file)
-        for row in reader:
-            vendor_data.append(row)
 
-    m = []
-    for items in vendor_data:
-        m.append(items['Nama Makanan'])
+def food_search(target_food):
 
-    return m
+    # binary search data
+    def binary_search(food_data, target):
+        low, high = 0, len(food_data) - 1
 
-def binary_search(food_data, target):
-    low, high = 0, len(food_data) - 1
-    
-    while low <= high:
-        mid = (low + high) // 2
-        if food_data[mid] == target:
-            return mid
-        elif food_data[mid] < target:
-            low = mid + 1
-        else:
-            high = mid - 1
-    
-    return -1  # item tidak ditemukan
+        while low <= high:
+            mid = (low + high) // 2
+            current_food = food_data[mid]["Nama Makanan"].lower().strip()
 
+            if current_food == target.lower().strip():
+                return food_data[mid]
+            elif current_food < target.lower().strip():
+                low = mid + 1
+            else:
+                high = mid - 1
 
-    
+        return None
 
-vendordata = vendor_search()
-print(vendordata)
-# print(tabulate(vendordata, headers='keys', tablefmt='fancy_grid'))
+    # load data ke memori & sortir data
+    def load_data(csv_file):
+        with open(csv_file, newline='', encoding='utf-8') as file:
+            reader = csv.DictReader(file)
+            sorted_data = sorted(reader, key=lambda x: x["Nama Makanan"].lower().strip())
+            return sorted_data
+
+    food_data = load_data("vendordata/Semua Vendor.csv")
+    result = binary_search(food_data, target_food)
+    if not result == None:
+        return [result]
+    else:
+        return None

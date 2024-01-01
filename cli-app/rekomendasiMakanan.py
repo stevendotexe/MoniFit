@@ -26,8 +26,4 @@ def rekomendasiMakanan():
   return daftarMakanan, makananRekomendasi
 
 #   print(makananRekomendasi)
-# rekomendasiMakanan()
-
-# makananRekomendasi = rekomendasiMakanan()
-# select = makananRekomendasi[makananRekomendasi["No"] == 1]
-# print(select)
+#
