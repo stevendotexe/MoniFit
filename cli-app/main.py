@@ -70,7 +70,7 @@ def bmrbmirda(username, height, weight, gender, age, activity_level): # done
 
     print(tabulate(user_data, headers='keys', tablefmt='pretty'))
 
-def vendor_selection():
+def vendor_selection(): # seleksi vendor untuk menampilkan data makanan
     print("Nama-nama vendor: ")
     for index, vendor in enumerate(vsel.vendor_names()):
         if not vendor == 'Semua Vendor':
@@ -88,10 +88,10 @@ def vendor_selection():
                 print("Vendor dengan nama", vendor_select, "tidak ditemukan.")
             else: 
                 break
-
+    
     print(tabulate(vendor_name, headers='keys', tablefmt='pretty'))
 
-def add_weight(username):
+def add_weight(username): # menambahkan berat untuk hari
     while True:
         try:    
             new_weight = int(input("Masukkan berat hari ini: "))
@@ -136,13 +136,34 @@ def add_weight(username):
         print(f"Kembali ke menu utama dalam {i}"); sleep(1)
         i -= 1
 
-def food_recommendation(username):
-    print("Generating food recommendations....")
+def food_recommendation(username): # fungsi rekomendasi makanan
+    todays_date = date.today()
+    def randomize_food(): # fungsi untuk memilih makanan yang random
+        food_list, new_food = rec.rekomendasiMakanan()
+        return new_food
+    
+    print("Memuat rekomendasi makanan...")
     sleep(1)
     todays_date = date.today() # ambil tanggal hari ini
-    food_list, food_rec = rec.rekomendasiMakanan() # ambil 3 data makanan rekomendasi
-    print(food_rec)
+    try:
+        if os.path.exists(f'userinfo/{username}/{todays_date}-foodrec.csv') == False:
+            print("Membuat rekomendasi makanan..."); sleep(0.5)
+            raise FileNotFoundError
+        else: 
+            print(pd.read_csv(f'userinfo/{username}/{todays_date}-foodrec.csv'))
 
+    except FileNotFoundError: # jika belum ada file rekomendasi makanan (harian), user bisa meminta program untuk membuat rekomendasi makanan.
+        food_rec = randomize_food()
+        while True:
+            print(food_rec)
+            sel = input("Ubah rekomendasi? (Y/N): ").lower()
+            if sel == 'y':
+                food_rec = randomize_food()
+            elif sel == 'n':
+                break
+            else: pass
+
+    food_rec = randomize_food()
     while True:
         try:
             selection = int(input("1. Ubah makananan\n2. Simpan\nPilihan: "))
@@ -160,6 +181,7 @@ def food_recommendation(username):
                           print(f"\nAnda memilih makanan {selected_num}:")
                           print(food_chsn)
                           print("\nMasukkan data berikut untuk mengubah data makanan di atas")
+                          
                           # ubah data satu persatu kolom
                           food_chsn.loc[:,"Nama Vendor"] = input("Nama Vendor: ")
                           food_chsn.loc[:,"Nama Makanan"] = input("Nama Makanan: ")
@@ -175,7 +197,7 @@ def food_recommendation(username):
                           break
                   except ValueError:
                       print("Mohon pilih antara 1, 2, atau 3.")
-            elif selection == 2:
+            elif selection == 2: # simpan
                 path = f"userinfo/{username}/{todays_date}-foodrec.csv"
                 if os.path.exists(path):
                     df = pd.read_csv(path, usecols=["No"])
@@ -186,12 +208,13 @@ def food_recommendation(username):
                 
                 # simpan dataframe ke dalam csv
                 food_rec.to_csv(path, mode="a", header=not  os.path.exists(path), index=False)
-                print("Data berhasil tersimpan.\n")
+                print("[🕛] Menyimpan data..."); sleep(1)
+                print("[✅] Data berhasil tersimpan.\n")
                 break
         except ValueError:
             print("Mohon pilih antara 1, atau 2.")
 
-def user_login(): # lupa_password to be completed
+def user_login():
     selection = user_selection()
     if selection == 1:
         username = login.register()
@@ -201,7 +224,7 @@ def user_login(): # lupa_password to be completed
         return username
     else:
         sleep(0.5); print("Exiting application..."); sleep(1); exit()
-
+    
 def user_selection(): # main menu login
     print("Selamat datang di\n"+figlet_render("MoniFit\n")+"Pilih opsi:")
     print("1. Registrasi")

@@ -1,5 +1,7 @@
 import csv
 import os
+from tabulate import tabulate
+
 def vendor_names():
     a = os.listdir("vendordata")
     vlist = []
@@ -20,10 +22,36 @@ def vendor_foods(vendorname):
 
     return data
 
-# print("Nama-nama vendor: ")
-# for index, vendor in enumerate(vendor_names()):
-#     print(f"{index + 1}. {vendor}")
+def vendor_search():
+    vendor_data = []  # list vendor_data menyimpan data vendor ke memori
+    with open('vendordata/Semua Vendor.csv') as file:
+        reader = csv.DictReader(file)
+        for row in reader:
+            vendor_data.append(row)
 
-# vendor_name = 'DAPUR QUEEN'
-# print(figlet_render(vendor_name))
-# print(tabulate(vendor_foods(vendor_name), headers='keys', tablefmt='pretty'))
+    m = []
+    for items in vendor_data:
+        m.append(items['Nama Makanan'])
+
+    return m
+
+def binary_search(food_data, target):
+    low, high = 0, len(food_data) - 1
+    
+    while low <= high:
+        mid = (low + high) // 2
+        if food_data[mid] == target:
+            return mid
+        elif food_data[mid] < target:
+            low = mid + 1
+        else:
+            high = mid - 1
+    
+    return -1  # item tidak ditemukan
+
+
+    
+
+vendordata = vendor_search()
+print(vendordata)
+# print(tabulate(vendordata, headers='keys', tablefmt='fancy_grid'))
