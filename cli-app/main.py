@@ -9,6 +9,7 @@ from tabulate import tabulate
 import perhitungan as calc
 import os
 import vendorselection as vsel
+import pandas as pd
 
 
 def main():
@@ -47,7 +48,7 @@ def mainmenu(username, height, weight, gender, age, activity_level):
             selection = int(input("Pilihan: "))
             if selection in possibilities:
                 if selection == 1: bmrbmirda(username, height, weight, gender, age, activity_level)
-                elif selection == 2: food_reccomendation(username)
+                elif selection == 2: food_recommendation(username)
                 elif selection == 3: login.change_data(username)
                 elif selection == 4: vendor_selection()
                 else: add_weight(username)
@@ -134,35 +135,60 @@ def add_weight(username):
         print(f"Kembali ke menu utama dalam {i}"); sleep(1)
         i -= 1
 
-def food_reccomendation(username):
+def food_recommendation(username):
     print("Generating food recommendations....")
     sleep(1)
-    todays_date = date.today()
-    food_list, food_rec = rec.rekomendasiMakanan()
-    food_rec.to_csv(f"userinfo/{username}/{todays_date}-foodrec")
+    todays_date = date.today() # ambil tanggal hari ini
+    food_list, food_rec = rec.rekomendasiMakanan() # ambil 3 data makanan rekomendasi
     print(food_rec)
 
     while True:
         try:
-            selection = int(input("1. Ubah makananan\n2. Lanjut\nPilihan: "))
-            if selection < 1 or selection > 2:
+            selection = int(input("1. Ubah makananan\n2. Simpan\nPilihan: "))
+            if selection < 1 or selection > 2: # memastikan user memilih antara 1 atau 2
                 raise ValueError
-            else: break
+            elif selection == 1: # apabila user memilih ubah makanan
+              while True:
+                  sel = [1, 2, 3]
+                  try:
+                      selected_num = int(input("\nUbah makanan 1, 2, atau 3? "))
+                      if selected_num not in sel: # memastikan user memilih antara 1 sampai 3
+                          raise ValueError
+                      elif selected_num in sel:
+                          food_chsn = food_rec[food_rec["No"] == selected_num] # ambil data 1 baris dari makanan yg dipilih
+                          print(f"\nAnda memilih makanan {selected_num}:")
+                          print(food_chsn)
+                          print("\nMasukkan data berikut untuk mengubah data makanan di atas")
+                          # ubah data satu persatu kolom
+                          food_chsn.loc[:,"Nama Vendor"] = input("Nama Vendor: ")
+                          food_chsn.loc[:,"Nama Makanan"] = input("Nama Makanan: ")
+                          food_chsn.loc[:,"Harga"] = int(input("Harga: "))
+                          food_chsn.loc[:,"Protein"] = float(input("Protein: "))
+                          food_chsn.loc[:,"Karbohidrat"] = float(input("Karbohidrat: "))
+                          food_chsn.loc[:,"Lemak"] = float(input("Lemak: "))
+                          food_chsn.loc[:,"Kalori"] = float(input("Kalori: "))
+
+                          # simpan data yg diubah ke dalam tabel 3 makanan rekomendasi
+                          food_rec[food_rec["No"] == selected_num] = food_chsn 
+                          print(food_rec)
+                          break
+                  except ValueError:
+                      print("Mohon pilih antara 1, 2, atau 3.")
+            elif selection == 2:
+                path = f"userinfo/{username}/{todays_date}-foodrec.csv"
+                if os.path.exists(path):
+                    df = pd.read_csv(path, usecols=["No"])
+                    last_number = df["No"].max()
+                    for index in food_rec.index:
+                      last_number += 1
+                      food_rec.loc[index, "No"] = last_number  
+                
+                # simpan dataframe ke dalam csv
+                food_rec.to_csv(path, mode="a", header=not  os.path.exists(path), index=False)
+                print("Data berhasil tersimpan.\n")
+                break
         except ValueError:
             print("Mohon pilih antara 1, atau 2.")
-    
-    if selection == 1:
-        sel = [1, 2, 3]
-        try:
-            selection = int(input("Ubah makanan 1, 2, atau 3? "))
-            if selection not in sel:
-                raise ValueError
-        except ValueError:
-            print("Mohon pilih antara 1, 2, atau 3.")
-    else: pass
-
-    if selection == 1:
-        print(food_list)
 
 def user_login(): # lupa_password to be completed
     selection = user_selection()

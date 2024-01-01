@@ -17,6 +17,17 @@ def rekomendasiMakanan():
 
     lst.append(daftarMakanan[daftarMakanan["No"] == rand]) # masukkan makanan ke lst
   makananRekomendasi = pd.concat(lst) # masukkan lst ke dalam makananRekomendasi
+  makananRekomendasi = makananRekomendasi.sort_values(["Harga"]) # sort harga
 
+  # ubah value kolom No dimulai dari 1
+  for i, index in enumerate(makananRekomendasi.index, start=1):
+    makananRekomendasi.loc[index, "No"] = i
+  
   return daftarMakanan, makananRekomendasi
 
+#   print(makananRekomendasi)
+# rekomendasiMakanan()
+
+# makananRekomendasi = rekomendasiMakanan()
+# select = makananRekomendasi[makananRekomendasi["No"] == 1]
+# print(select)
