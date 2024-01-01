@@ -22,7 +22,7 @@ def main():
             pass
 
 def login():
-    usernames = [user.rstrip('.csv') for user in os.listdir("userinfo")]
+    usernames = [user for user in os.listdir("userinfo")]
     while True:
         username = input("Username: ")
         if username in usernames:

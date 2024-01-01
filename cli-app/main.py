@@ -68,7 +68,7 @@ def bmrbmirda(username, height, weight, gender, age, activity_level): # done
         {'Calories': calories, 'Body Mass Index': f'{bmi:.2f}kg/m²', 'Carbohydrates RDA': carbsRDA, 'Fat RDA': fatRDA, 'Protein RDA': proteinRDA}
     ]
 
-    print(tabulate(user_data, headers='keys', tablefmt='grid'))
+    print(tabulate(user_data, headers='keys', tablefmt='pretty'))
 
 def vendor_selection():
     print("Nama-nama vendor: ")
@@ -79,8 +79,9 @@ def vendor_selection():
 
     while True:
         vendor_select = input("Pilih nama vendor: ")
-        if vendor_select == 'Semua Vendor':
-            pass
+        if vendor_select == 'A':
+            vendor_name = vsel.vendor_foods('Semua Vendor')
+            break
         else:
             vendor_name = vsel.vendor_foods(vendor_select)
             if vendor_name == -1: 
@@ -198,8 +199,6 @@ def user_login(): # lupa_password to be completed
     elif selection == 2:
         username = login.login()
         return username
-    elif selection == 3:
-        pass # lupaPassword to be completed
     else:
         sleep(0.5); print("Exiting application..."); sleep(1); exit()
 
@@ -207,20 +206,19 @@ def user_selection(): # main menu login
     print("Selamat datang di\n"+figlet_render("MoniFit\n")+"Pilih opsi:")
     print("1. Registrasi")
     print("2. Login")
-    print("3. Lupa password")
-    print("4. Keluar")
+    print("3. Keluar")
     print("Untuk keluar aplikasi dalam stage apapun, mohon tekan CTRL + C")
     print()
-    possibilities = [1, 2, 3, 4]
+    possibilities = [1, 2, 3]
     while True:
         try:
             selection = int(input("Pilihan: "))
             if selection in possibilities:
                 return selection
             else:
-                raise ValueError("Mohon pilih nomor 1, 2, 3, dan 4.")
+                raise ValueError
         except ValueError:
-            print("Mohon pilih nomor 1 atau 2.")
+            print("Mohon pilih nomor 1, 2, atau 3.")
 
 if __name__ == '__main__':
     while True:
