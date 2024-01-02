@@ -191,7 +191,10 @@ def food_recommendation(username): # fungsi rekomendasi makanan
                           food_chsn.loc[:,"Protein"] = float(input("Protein: "))
                           food_chsn.loc[:,"Karbohidrat"] = float(input("Karbohidrat: "))
                           food_chsn.loc[:,"Lemak"] = float(input("Lemak: "))
-                          food_chsn.loc[:,"Kalori"] = float(input("Kalori: "))
+                          
+                          # hitung kalori
+                          cal = (food_chsn.loc[:,"Protein"]*4)+(food_chsn.loc[:,"Karbohidrat"]*4)+(food_chsn.loc[:,"Lemak"]*9)
+                          food_chsn.loc[:,"Kalori"] = cal
 
                           # simpan data yg diubah ke dalam tabel 3 makanan rekomendasi
                           food_rec[food_rec["No"] == selected_num] = food_chsn 
