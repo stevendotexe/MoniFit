@@ -59,6 +59,7 @@ def mainmenu(username, height, weight, gender, age, activity_level):
                 elif selection == 4: vendor_selection()
                 elif selection == 5: add_weight(username)
                 elif selection == 6: food_item_search()
+                elif selection == 7: sejarah_berat(username)
                 else: raise KeyboardInterrupt 
                 """
                 memaksa untuk ada eror KeyboardInterrupt agar exception KeyboardInterrupt terpanggil 
@@ -69,6 +70,15 @@ def mainmenu(username, height, weight, gender, age, activity_level):
                 raise ValueError
         except ValueError:
             print("Mohon pilih nomor 1, 2, 3, 4, dan 5.")
+
+def sejarah_berat(username):
+    user_wh = []
+    with open(f'userinfo/{username}/weight_history.csv') as file:
+        reader = csv.reader(file)
+        for row in reader:
+            user_wh.append(row)
+    wh_headers = ['Tanggal', 'Berat']
+    print(tabulate(user_wh, headers=wh_headers, tablefmt='pretty'))
 
 def bmrbmirda(username, height, weight, gender, age, activity_level): 
     
@@ -187,7 +197,6 @@ def food_recommendation(username): # fungsi rekomendasi makanan
                 sel = input("Ubah rekomendasi? (Y/N): ").lower()
                 if sel == 'y':
                     food_rec = randomize_food()
-                    return food_rec
                 elif sel == 'n':
                     return food_rec
                 else: pass
@@ -237,7 +246,7 @@ def food_recommendation(username): # fungsi rekomendasi makanan
                     last_number = df["No"].max()
                     for _ in food_rec.index:
                       for i in range(1, 4):
-                        food_rec.loc[i, "No"] = last_number  
+                        food_rec.loc[int(i), "No"] = int(last_number)  
                 
                 # simpan dataframe ke dalam csv
                 try: os.remove(path) 
