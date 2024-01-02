@@ -1,4 +1,4 @@
-# current mode: weight loss
+# mode: weight loss
 
 def bmr(gender, weight, height, age, activity_level): # bmr untuk menghitung jumlah kalori yang dibutuhkan
     height = height/100
