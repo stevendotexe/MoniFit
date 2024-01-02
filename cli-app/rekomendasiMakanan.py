@@ -24,6 +24,3 @@ def rekomendasiMakanan():
     makananRekomendasi.loc[index, "No"] = i
   
   return daftarMakanan, makananRekomendasi
-
-#   print(makananRekomendasi)
-#

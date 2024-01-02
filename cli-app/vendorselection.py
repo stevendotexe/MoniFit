@@ -3,29 +3,28 @@ import os
 from tabulate import tabulate
 
 def vendor_names():
-    a = os.listdir("vendordata")
-    vlist = []
+    a = os.listdir("vendordata") # list data vendor di dalam folder 'vendordata'
+    vlist = [] # vlist membuat list baru untuk menyimpan semua nama vendor (tanpa .csv) dengan for loop di bawah
     for i in a:
         if i.endswith('.csv'):
             vlist.append(i)
     vlist = [i.rstrip('.csv') for i in vlist]
-    return vlist
+    return vlist # mengembalikan list vendor
 
-def vendor_foods(vendorname):
-    # Nama Makanan, Harga, Protein, Karbohidrat, Lemak, Kalori
+def vendor_foods(vendorname): # mengakses data makanan per vendor
     try:     
         with open(f'vendordata/{vendorname}.csv', 'r') as file:
             reader = csv.DictReader(file)
             data = [row for row in reader]
-    except FileNotFoundError:
+    except FileNotFoundError: # jika data tidak ditemukan akan mengembalikan '-1'
         return -1
 
-    return data
+    return data # mengembalikan data makanan vendor yang telah dipilih
 
 
 def food_search(target_food):
 
-    # binary search data
+    # binary search data makanan
     def binary_search(food_data, target):
         low, high = 0, len(food_data) - 1
 
@@ -40,9 +39,9 @@ def food_search(target_food):
             else:
                 high = mid - 1
 
-        return None
+        return None 
 
-    # load data ke memori & sortir data
+    # me-load data ke memori & sortir data
     def load_data(csv_file):
         with open(csv_file, newline='', encoding='utf-8') as file:
             reader = csv.DictReader(file)

@@ -7,7 +7,7 @@ from tabulate import tabulate
 def main():
     while True:
         try:
-            selection = int(input("Pilih mode: \n1. Registrasi\n2. Login\n3. Ubah data\nPilihan (Ctrl+C untuk keluar): "))
+            selection = int(input("Pilih mode: \n1️⃣  Registrasi\n2️⃣  Login\n3️⃣  Ubah data\nPilihan (Ctrl+C untuk keluar): "))
         except ValueError:
             print("Mohon pilih nomor antara 1 atau 2.")
         if selection == 1:
@@ -39,7 +39,7 @@ def login():
                 else:
                     while True:
                         try:
-                            selection = int(input("Password salah.\n1. Coba lagi\n2. Keluar dan registrasi\n\n Pilihan: "))
+                            selection = int(input("Password salah.\n1️⃣  Coba lagi\n2️⃣  Keluar dan registrasi\n\n Pilihan: "))
                             if selection == 1:
                                 break
                             elif selection == 2:
@@ -53,7 +53,7 @@ def login():
             print(f"Username dengan nama {username} tidak ditemukan. Apakah anda ingin keluar dan registrasi?")
             while True:
                 try:
-                    selection = int(input("1. Coba lagi\n2. Keluar dan registrasi\nPilihan: "))
+                    selection = int(input("1️⃣  Coba lagi\n2️⃣  Keluar dan registrasi\nPilihan: "))
                     if selection == 1:
                         break
                     elif selection == 2:
@@ -63,18 +63,19 @@ def login():
                 except ValueError:
                     print("Mohon pilih antara 1 dan 2.")
 
-def register():
+def register(): # fungsi registrasi user
     email = input("Masukkan email: ")
     usernames = [user.rstrip('.csv') for user in os.listdir("userinfo")]
 
     while True:
         username = input("Masukkan username: ")
-        if username in usernames or not username.isalnum():
+        if username in usernames or not username.isalnum(): 
+            # jika username sudah diambil atau username alfanumerik user diminta username lain
             print(f"Username dengan nama {username} sudah ada atau tidak alfanumerik.")
         else:
             while True:
                 password = input("Masukkan password: ")
-                if len(password) >= 8:
+                if len(password) >= 8: # validasi password
                     print("Sedang me-register akun....")
                     sleep(1)
                     print("Registrasi sukses!")
@@ -83,8 +84,7 @@ def register():
                 else:
                     print("Password harus lebih dari 8 karakter.")
 
-
-def new_user(username, email, password):
+def new_user(username, email, password): # fungsi menambah user
     day = date.today()
 
     print("Selamat datang di MoniFit! Agar data kami sesuai dengan perhitungan, mohon masukkan data-data.")
@@ -111,16 +111,16 @@ def new_user(username, email, password):
 
     print("Level Aktivitas: ")
     print("_____________________________________")
-    print("| 1 | Sedikit atau tidak olahraga")
-    print("| 2 | 1 - 3 kali per minggu")
-    print("| 3 | 4 - 5 kali per minggu")
-    print("| 4 | Setiap hari | ATAU | Olahraga intens 3 - 4 kali per minggu")
-    print("| 5 | Olahraga intens 6 - 7 kali per minggu")
-    print("| 6 | Olahraga intens setiap hari atau pekerjaan fisik")
+    print("| 1️⃣  | Sedikit atau tidak olahraga")
+    print("| 2️⃣  | 1 - 3 kali per minggu")
+    print("| 3️⃣  | 4 - 5 kali per minggu")
+    print("| 4️⃣  | Setiap hari | ATAU | Olahraga intens 3 - 4 kali per minggu")
+    print("| 5️⃣  | Olahraga intens 6 - 7 kali per minggu")
+    print("| 6️⃣  | Olahraga intens setiap hari atau pekerjaan fisik")
     print("_____________________________________")
-    print("| Olahraga = 15 - 30 menit aktivitas jantung yang naik")
-    print("| Olahraga intens = 45 - 120 menit aktivitas jantung yang naik")
-    print("| Olahraga sangat intens = 45 - 120 menit aktivitas jantung yang naik")
+    print("| [ ℹ️] Olahraga = 15 - 30 menit aktivitas jantung yang naik")
+    print("| [ ℹ️] Olahraga intens = 45 - 120 menit aktivitas jantung yang naik")
+    print("| [ ℹ️] Olahraga sangat intens = 45 - 120 menit aktivitas jantung yang naik")
     print("_____________________________________")
     possibilities = {'1': 1.2, '2': 1.375, '3': 1.55, '4': 1.55, '5': 1.725, '6': 1.9}
 
@@ -178,12 +178,12 @@ def change_data(username):
     while True:
         try:
             print("NB: Anda dapat mengubah berat dengan menambahkan sejarah berat.")
-            selection = int(input("Apa yang ingin diubah?\n1. Password\n2. Email\n3. Tinggi\n4. Gender\n5. Umur\n6. L. Aktivitas\n7. Cancel\nPilihan: "))
+            selection = int(input("Apa yang ingin diubah?\n1️⃣  Password\n2️⃣  Email\n3️⃣  Tinggi\n4️⃣  Gender\n5️⃣  Umur\n6️⃣  L. Aktivitas\n7️⃣  Cancel\nPilihan: "))
             
-            if not 0 < selection < 8:
-                raise ValueError
+            if not 0 < selection < 8: # validasi password
+                raise ValueError # jika password kurang dari 8 karakter
             
-            if selection == 1: # change password
+            if selection == 1: # ubah password password
                 while True:
                     password_baru = input("Password baru: ")
                     if len(password_baru) < 8:
@@ -191,16 +191,16 @@ def change_data(username):
                     else:
                         break
                 userdict[0]['Password'] = password_baru
-            elif selection == 2: # change email
+            elif selection == 2: # ubah email
                 userdict[0]['Email'] = input("Email baru: ")
-            elif selection == 3: # change height
+            elif selection == 3: # ubah tinggi
                 while True:
                     try:
                         userdict[0]['Tinggi'] = int(input("Tinggi baru: "))
                         break
                     except ValueError:
                         print("Tinggi harus angka nilai bulat.")
-            elif selection == 4: # change gender
+            elif selection == 4: # ubah gender
                 while True:
                     gender_baru = input("Gender baru: (L/P): ").lower()
                     print(gender_baru)
@@ -209,22 +209,22 @@ def change_data(username):
                         break
                     else:
                         print("Mohon masukkan antara 'L' atau 'P'.")                      
-            elif selection == 5: # change age
+            elif selection == 5: # ubah umur
                 while True:
                     try:
                         userdict[0]['Umur'] = int(input("Umur baru: "))
                         break
                     except ValueError:
                         print("Umur harus angka nilai bulat.")
-            elif selection == 6: # change act. level
+            elif selection == 6: # ubah level aktivitas
                 print("Level Aktivitas: ")
                 print("_____________________________________")
-                print("| 1 | Sedikit atau tidak olahraga")
-                print("| 2 | 1 - 3 kali per minggu")
-                print("| 3 | 4 - 5 kali per minggu")
-                print("| 4 | Setiap hari | ATAU | Olahraga intens 3 - 4 kali per minggu")
-                print("| 5 | Olahraga intens 6 - 7 kali per minggu")
-                print("| 6 | Olahraga intens setiap hari atau pekerjaan fisik")
+                print("| 1️⃣  | Sedikit atau tidak olahraga")
+                print("| 2️⃣  | 1 - 3 kali per minggu")
+                print("| 3️⃣  | 4 - 5 kali per minggu")
+                print("| 4️⃣  | Setiap hari | ATAU | Olahraga intens 3 - 4 kali per minggu")
+                print("| 5️⃣  | Olahraga intens 6 - 7 kali per minggu")
+                print("| 6️⃣  | Olahraga intens setiap hari atau pekerjaan fisik")
                 print("_____________________________________")
                 print("| Olahraga = 15 - 30 menit aktivitas jantung yang naik")
                 print("| Olahraga intens = 45 - 120 menit aktivitas jantung yang naik")
@@ -242,20 +242,21 @@ def change_data(username):
             else:
                 break
             
-            print(tabulate(userdict, headers='keys', tablefmt='grid'))
+            print(tabulate(userdict, headers='keys', tablefmt='grid')) # menanya user jika ingin mengubah data lain
             sel = input("Ubah data lain? (Y/N): ")
             if sel == 'N' or sel == 'n':
                 print(tabulate(userdict, headers='keys', tablefmt='grid'))
-                select = input("Konfirmasi Perubahan? (Y/N): ")
+                select = input("Konfirmasi Perubahan? (Y/N): ") # konfirmasi perubahan dan print data baru
                 if select == 'N' or select == 'n':
                     pass
                 else:
                     with open(f'userinfo/{username}/userdata.csv', 'w') as file:
                         file.write(f"{userdict[0]['Username']},{userdict[0]['Password']},{userdict[0]['Email']},{userdict[0]['Reg. Date']},{userdict[0]['Berat']},{userdict[0]['Tinggi']},{userdict[0]['Gender']},{userdict[0]['Umur']},{convert_activity_level(userdict[0]['L. Aktivitas'], mode='rev')}")
                         print("Data telah diubah.")
+                        # menulis kembali data
                 break
            
-            else: # confirm data
+            else: # konfirmasi data
                 pass
         except ValueError:
             print("Mohon gunakan nomor 1 - 7.")
