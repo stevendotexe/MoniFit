@@ -2,10 +2,10 @@ from figletrender import figlet_render
 from time import sleep
 from datetime import date
 from cool import coolStuff
+from tabulate import tabulate
 import login
 import rekomendasiMakanan as rec
 import csv
-from tabulate import tabulate
 import perhitungan as calc
 import os
 import vendorselection as vsel
