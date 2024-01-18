@@ -3,7 +3,7 @@ from time import sleep
 import os
 import csv
 from tabulate import tabulate
-import re
+import validator_collection
 
 def main():
     while True:
@@ -65,14 +65,11 @@ def login():
                     print("Mohon pilih antara 1 dan 2.")
 
 def register(): # fungsi registrasi user
-    email_pattern = re.compile(r'([A-Za-z0-9]+[.-_])*[A-Za-z0-9]+@[A-Za-z0-9-]+(\.[A-Z|a-z]{2,})+')
     while True:
         try:
-            email = input("Masukkan email: ")
-            if re.fullmatch(email_pattern, email):
-                break
-            else: raise SyntaxError
-        except SyntaxError:
+            email = validator_collection.email(input("Masukkan email: "))
+            break
+        except:
             print("⚠️  Mohon masukkan email yang valid.")
 
     usernames = [user.rstrip('.csv') for user in os.listdir("userinfo")]
